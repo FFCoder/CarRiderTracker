@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
 import DesktopView from "./Pages/DesktopView"
-import Grid from "@material-ui/core/Grid"
-
+import Container from "@material-ui/core/Container"
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,26 +11,44 @@ import {
   Link
 } from "react-router-dom";
 import NavButton from './Components/NavButton';
+import { AppBar } from '@material-ui/core';
+import NavigationDrawer from "./NavDrawer"
+// import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from "@material-ui/core/IconButton"
+import theme from "./theme"
+import 'fontsource-roboto';
+import NavDrawer from './NavDrawer';
+
 
 function App() {
-  
+
   return (
     <div className="App">
-      <Grid container justify="center" className="root" spacing={4}>
-        <header className="Header"><h1>
-          Car Rider Tracker
-      </h1></header>
-        <Router>
-          <Grid item xs={12}>
-            <NavButton />
-            </Grid>
+      <AppBar color="primary" position="static">
+        <Toolbar>
+        <NavDrawer />
+        <Typography variant="h5" >
+
+      Car Rider Tracker
+    </Typography>
+        </Toolbar>               
+          
+        </AppBar>
+        <Container fixed>
+          <Router>
+            {/* <NavButton /> */}
             <Switch>
               <Route exact path="/">
                 <DesktopView />
               </Route>
+              <Route path="/mobile">
+                <h2>Mobile View Placeholder</h2>
+              </Route>
             </Switch>
-        </Router>
-      </Grid>
+          </Router>
+        </Container>
+
+      
     </div>
   );
 }

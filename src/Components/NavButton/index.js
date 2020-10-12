@@ -1,17 +1,36 @@
 import React from 'react';
+import { useHistory } from "react-router-dom"
 import Menu from "@material-ui/core/Menu"
 import MenuItem from "@material-ui/core/MenuItem"
-import Paper from "@material-ui/core/Paper"
 import { Button } from '@material-ui/core';
-import DesktopView from "../../Pages/DesktopView"
 import classes from "./NavButton.module.css"
 
 export default (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const history = useHistory();
 
     const handleMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
+    const openView = (viewName) =>  {
+        let historyPush;
+        switch(viewName) {
+            case "mobile":
+                historyPush = "/mobile"           
+                break;
+            case "desktop":
+                historyPush = "/"
+                break;
+            default:
+                historyPush = "/"
+                break;
+        }
+        history.push(historyPush);
+        handleMenuClose();
+    }
+
+    const handleMobile = () => {openView("mobile")};
+    const handleDesktop = () => {openView("desktop")};
 
     const handleMenuClose = () => {
         setAnchorEl(null);
@@ -30,8 +49,8 @@ export default (props) => {
                   open={Boolean(anchorEl)}
                   onClose={handleMenuClose}
                 >
-                  <MenuItem onClick={handleMenuClose}>Desktop View</MenuItem>
-                  <MenuItem onClick={handleMenuClose}>Car Rider View</MenuItem>
+                  <MenuItem onClick={handleDesktop}>Desktop View</MenuItem>
+                  <MenuItem onClick={handleMobile}>Car Rider View</MenuItem>
                 </Menu>
             </div>
         
