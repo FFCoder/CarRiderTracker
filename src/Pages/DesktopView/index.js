@@ -1,11 +1,20 @@
+import { Grid, Paper, Typography } from '@material-ui/core';
 import React from 'react';
-import { Paper } from '@material-ui/core';
-import classes from "./desktopView.module.css"
 
 export default (props) => (
     <React.Fragment>
-        <Paper className={classes.Paper} elevation={3}>
-            <h2>Desktop View</h2>
-        </Paper>
+        <Grid container spacing={3}>
+            <Grid item xs={6}>
+                <Paper style={{padding: "3rem", textAlign: "center"}}>
+                    <Typography variant="h3">
+                        436
+                    </Typography>
+                    <Typography variant="h6">
+                        Jonathon Chambers
+                    </Typography>
+
+                </Paper>
+            </Grid>
+        </Grid>
     </React.Fragment>
 );

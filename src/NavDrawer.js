@@ -5,15 +5,22 @@ import { Drawer, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
 export default (props) => {
-    const [drawerState, setdrawerState] = React.useState(false);
+    var drawerState = props.drawerState;
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+          return;
+        }
+        drawerState = true;
+    }
 
     return (
         <React.Fragment>
-            <Button onClick={()=>{setdrawerState(!drawerState)}}>
+            <Button onClick={toggleDrawer('left', true)}>
                 <MenuIcon />
             </Button>
-            <Drawer open={drawerState}>
+            <Drawer open={drawerState} anchor="left" onClose={toggleDrawer(drawerState, false)}>
                 <p>Test</p>
+                <p>{drawerState}</p>
             </Drawer>
         </React.Fragment>
     )
