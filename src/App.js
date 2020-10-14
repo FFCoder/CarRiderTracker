@@ -10,10 +10,11 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { AppBar, Paper } from '@material-ui/core';
+import { AppBar, Paper, Button } from '@material-ui/core';
 // import NavigationDrawer from "./NavDrawer"
 import 'fontsource-roboto';
 import NavDrawer from './NavDrawer';
+import LoginButton from './Components/LoginButton';
 
 
 function App() {
@@ -30,24 +31,25 @@ function App() {
       <AppBar color="primary" position="static">
         <Toolbar>
           <NavDrawer
-            drawerState={null}/>
-          <Typography variant="h5" >Car Rider Tracker</Typography>
+            drawerState={null} />
+          <Typography variant="h5" style={{flexGrow: 1}} >Car Rider Tracker</Typography>
+          <LoginButton />
         </Toolbar>
 
       </AppBar>
       <Container maxWidth="lg" >
-        <Paper style={{padding: "2rem", marginTop:"1rem"}} elevation={3}>
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <DesktopView />
-            </Route>
-            <Route path="/mobile">
-              <h2>Mobile View Placeholder</h2>
-              <p>Device Width: {devWidth}</p>
-            </Route>
-          </Switch>
-        </Router>
+        <Paper style={{ padding: "2rem", marginTop: "1rem" }} elevation={3}>
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                <DesktopView />
+              </Route>
+              <Route path="/mobile">
+                <h2>Mobile View Placeholder</h2>
+                <p>Device Width: {devWidth}</p>
+              </Route>
+            </Switch>
+          </Router>
         </Paper>
       </Container>
 
